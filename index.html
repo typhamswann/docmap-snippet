@@ -13,6 +13,7 @@
     href="https://docmap.dev/ico.png"
   />
 
+  <!-- Tailwind CSS -->
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
     rel="stylesheet"
@@ -32,59 +33,91 @@
           <span class="text-xl font-semibold text-gray-900">DocMap</span>
         </div>
         <div class="hidden md:flex items-center space-x-4">
-          <a href="#features" class="text-gray-700 hover:text-gray-900"
-            >Features</a
-          >
-          <a href="#how-it-works" class="text-gray-700 hover:text-gray-900"
-            >How It Works</a
-          >
+          <a href="#features" class="text-gray-700 hover:text-gray-900">Features</a>
+          <a href="#how-it-works" class="text-gray-700 hover:text-gray-900">How It Works</a>
           <a
             href="https://calendly.com/phamswannty/30min"
             class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-            >Book Demo</a
           >
+            Book Demo
+          </a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <div class="bg-white">
-    <div
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24"
-    >
+  <!-- Hero Section (Full Screen) -->
+  <div class="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 to-blue-200">
+    <!-- Animated blobs (pure CSS) -->
+    <div class="absolute top-0 left-0 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+    <div class="absolute top-0 right-0 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-30"></div>
+    <div class="absolute bottom-0 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-3xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight">
+        Make Your Documentation
+        <br />
+        <span class="text-blue-600">AI-Visible</span>
+      </h1>
+      <p class="mt-5 max-w-xl mx-auto text-base text-gray-700 sm:text-lg md:text-xl">
+        Are your Documentation and API references invisible to tools like Cursor and ChatGPT?
+        Transform your content into an accessible, AI-ready resource purpose-built for
+        modern development workflows.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <a
+          href="https://calendly.com/phamswannty/30min"
+          class="px-8 py-3 rounded-md bg-blue-600 text-white font-medium hover:bg-blue-700"
+        >
+          Book a Demo
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- End Hero Section -->
+
+  <!-- AI Tools Section (Gray Background) -->
+  <div class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1
-          class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
-        >
-          <span class="block">Unlock Your Documentation for</span>
-          <span class="block text-blue-500">AI-Powered Development</span>
-        </h1>
-        <p
-          class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl"
-        >
-          Transform any documentation into a powerful, searchable API.
-          Purpose-built for modern development workflows with ChatGPT, Cursor,
-          Copilot, and other AI tools.
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Serve your developers however they code
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          With DocMap, your documentation becomes fully accessible to the AI assistants and 
+          developer tools used by modern teams.
         </p>
-        <div
-          class="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8"
-        >
-          <div class="rounded-md shadow">
-            <a
-              href="https://calendly.com/phamswannty/30min"
-              class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 md:py-4 md:text-lg md:px-10"
-            >
-              Book a Demo
-            </a>
-          </div>
+      </div>
+      <!-- Staggered layout: 5 columns -->
+      <div class="grid grid-cols-5 gap-8 place-items-center mt-12">
+        <!-- Row 1, Col 1 -->
+        <div class="col-span-1 row-start-1 col-start-1 flex justify-center">
+          <img src="logos/chatgpt.svg.png" alt="ChatGPT" class="h-12"/>
+        </div>
+        <!-- Row 1, Col 3 -->
+        <div class="col-span-1 row-start-1 col-start-3 flex justify-center">
+          <img src="logos/claude.svg" alt="Claude" class="h-12"/>
+        </div>
+        <!-- Row 1, Col 5 -->
+        <div class="col-span-1 row-start-1 col-start-5 flex justify-center">
+          <img src="logos/continue.png" alt="Continue" class="h-12"/>
+        </div>
+        <!-- Row 2, Col 2 -->
+        <div class="col-span-1 row-start-2 col-start-2 flex justify-center">
+          <img src="logos/cursor.png" alt="Cursor" class="h-12"/>
+        </div>
+        <!-- Row 2, Col 4 -->
+        <div class="col-span-1 row-start-2 col-start-4 flex justify-center">
+          <img src="logos/gemini.svg.png" alt="Gemini" class="h-12"/>
         </div>
       </div>
     </div>
   </div>
+  <!-- End AI Tools Section -->
 
-  <!-- Features Section -->
-  <div id="features" class="py-16 bg-gray-50">
+  <!-- Features Section (White Background) -->
+  <div id="features" class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="lg:text-center">
         <h2
@@ -100,34 +133,34 @@
         >
           <div class="relative">
             <div class="text-lg font-medium text-gray-900">
-              Seamless Integration
+              Invisible Snippet, Clean Data
             </div>
             <p class="mt-2 text-base text-gray-500">
-              Connect any documentation source - from complex multi-page sites
-              to legacy documentation systems. We handle the heavy lifting of
-              parsing and structuring.
+              An invisible snippet is all it takes to make your documentation fully accessible to AI parsers. 
+              We provide a clean, structured data feed that’s hidden from normal view but instantly readable 
+              by ChatGPT, Cursor, Copilot, and other AI tools.
             </p>
           </div>
 
           <div class="relative">
             <div class="text-lg font-medium text-gray-900">
-              AI-Optimized Output
+              Always Up-to-Date
             </div>
             <p class="mt-2 text-base text-gray-500">
-              Get your documentation in formats designed for AI tools. Clean
-              JSON, semantic structure, and context-aware formatting make it
-              instantly usable by modern development tools.
+              Every time you update your docs, our snippet refreshes to ensure the latest information 
+              is available. Say goodbye to outdated references—DocMap keeps your documentation accurate 
+              and current for AI-driven development.
             </p>
           </div>
 
           <div class="relative">
             <div class="text-lg font-medium text-gray-900">
-              Universal Compatibility
+              Full-Service Integration
             </div>
             <p class="mt-2 text-base text-gray-500">
-              From automatically generated llms.txt files to structured APIs,
-              your documentation works seamlessly with ChatGPT, Copilot,
-              Cursor, and any other AI-powered development tool.
+              From parsing your existing documentation to generating the snippet, DocMap handles all 
+              the heavy lifting behind the scenes. No complicated setup or custom scripts—just point 
+              us to your docs, and we’ll take care of the rest.
             </p>
           </div>
         </div>
@@ -135,112 +168,94 @@
     </div>
   </div>
 
-  <!-- How It Works Section -->
-  <div id="how-it-works" class="py-16 bg-white">
+  <!-- How It Works Section (Updated) -->
+  <div id="how-it-works" class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="lg:text-center">
-        <h2
-          class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl"
-        >
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
           How It Works
         </h2>
+        <p class="mt-4 max-w-2xl text-lg text-gray-500 mx-auto">
+          Get your documentation AI-ready in just three simple steps.
+        </p>
       </div>
-      <div class="mt-16">
-        <div class="space-y-10">
-          <div class="flex items-center space-x-4">
-            <div
-              class="flex-shrink-0 h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold"
-            >
-              1
-            </div>
-            <div>
-              <h3 class="text-lg font-medium text-gray-900">
-                Point to Your Docs
-              </h3>
-              <p class="mt-2 text-base text-gray-500">
-                Simply provide the URL or repository of your documentation. We
-                support any format or structure, from modern sites to legacy
-                systems.
-              </p>
-            </div>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center flex flex-col items-center">
+          <div class="h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold">
+            1
           </div>
-          <div class="flex items-center space-x-4">
-            <div
-              class="flex-shrink-0 h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold"
-            >
-              2
-            </div>
-            <div>
-              <h3 class="text-lg font-medium text-gray-900">
-                Smart Processing
-              </h3>
-              <p class="mt-2 text-base text-gray-500">
-                Our advanced parsing engine transforms your documentation into
-                clean, structured formats optimized for AI tools and modern
-                development workflows.
-              </p>
-            </div>
+          <h3 class="mt-4 text-lg font-medium text-gray-900">Point to Your Docs</h3>
+          <p class="mt-2 text-base text-gray-500">
+            Simply provide the URL or repository of your documentation. We support any format or structure, 
+            from modern sites to legacy systems.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center flex flex-col items-center">
+          <div class="h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold">
+            2
           </div>
-          <div class="flex items-center space-x-4">
-            <div
-              class="flex-shrink-0 h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold"
-            >
-              3
-            </div>
-            <div>
-              <h3 class="text-lg font-medium text-gray-900">
-                Instant AI Integration
-              </h3>
-              <p class="mt-2 text-base text-gray-500">
-                Access your AI-ready documentation through our API or generated
-                files. Seamlessly integrate with ChatGPT, Copilot, Cursor, and
-                other AI tools.
-              </p>
-            </div>
+          <h3 class="mt-4 text-lg font-medium text-gray-900">Smart Processing</h3>
+          <p class="mt-2 text-base text-gray-500">
+            We transform your documentation into clean, structured formats optimized for 
+            AI tools and modern development workflows.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="bg-white shadow rounded-lg p-6 text-center flex flex-col items-center">
+          <div class="h-12 w-12 flex items-center justify-center rounded-full bg-blue-500 text-white text-xl font-bold">
+            3
           </div>
+          <h3 class="mt-4 text-lg font-medium text-gray-900">AI Visibility</h3>
+          <p class="mt-2 text-base text-gray-500">
+            Your docs will now be parsable by ChatGPT Search, Cursor, Continue.dev, 
+            or any tool your customers use to code.
+          </p>
         </div>
       </div>
     </div>
   </div>
+  <!-- End How It Works Section -->
 
-  <!-- CTA Section -->
-  <div id="book-demo" class="bg-gray-50">
-    <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <div
-        class="bg-blue-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4"
+  <!-- CTA Section (New) -->
+  <div id="book-demo" class="relative bg-blue-600">
+    <!-- Background Decorative Circle -->
+    <div class="absolute inset-0 overflow-hidden">
+      <svg
+        class="absolute bottom-0 left-0 transform translate-y-1/2 -translate-x-1/2 text-blue-700"
+        width="100%"
+        height="500"
+        fill="none"
+        viewBox="0 0 720 720"
       >
-        <div
-          class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20"
+        <circle fill="currentColor" cx="360" cy="360" r="480" />
+      </svg>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+          Ready to get started?
+        </h2>
+        <p class="mt-4 text-lg leading-6 text-blue-100 max-w-2xl mx-auto">
+          See how DocMap can transform your documentation into a powerful
+          resource for AI-powered development. Our team will show you how
+          to unlock the full potential of your docs.
+        </p>
+        <a
+          href="https://calendly.com/phamswannty/30min"
+          class="mt-8 inline-block bg-white hover:bg-gray-50 text-blue-600 font-medium py-3 px-8 rounded-md shadow"
         >
-          <div class="lg:self-center">
-            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-              <span class="block">Ready to get started?</span>
-            </h2>
-            <p class="mt-4 text-lg leading-6 text-white">
-              See how DocMap can transform your documentation into a powerful
-              resource for AI-powered development. Our team will show you how
-              to unlock the full potential of your docs.
-            </p>
-            <a
-              href="https://calendly.com/phamswannty/30min"
-              class="mt-8 bg-white border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center text-base font-medium text-blue-500 hover:bg-gray-50"
-            >
-              Schedule Demo
-            </a>
-          </div>
-        </div>
-        <div class="lg:col-span-1 flex items-start pt-12 pr-8">
-          <img
-            class="object-contain w-auto max-w-m md:max-w-l"
-            src="demo.png"
-            alt="DocMap Interface"
-          />
-        </div>
+          Schedule Demo
+        </a>
       </div>
     </div>
   </div>
+  <!-- End CTA Section (New) -->
 
-  <!-- Footer -->
+  <!-- Footer (White) -->
   <footer class="bg-white">
     <div
       class="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8"
