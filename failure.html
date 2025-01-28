@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Docs with Expanding “Popout” Section</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #2a6496;
+      text-decoration: none;
+      border-bottom: 1px dashed #2a6496;
+    }
+    a:hover {
+      color: #0b5c9b;
+    }
+    /* Hidden by default */
+    #apiDocs {
+      display: none;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      background: #f9f9f9;
+      margin-top: 1rem;
+    }
+    /* Show when targeted by hash */
+    :target {
+      display: block !important;
+    }
+    code {
+      background: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Simple Documentation Page</h1>
+  
+  <p>
+    Below is a link to a hidden section containing API endpoint details.  
+    Clicking the link updates the URL to <code>#apiDocs</code>, revealing an “expanded” section.
+  </p>
+  
+  <p>
+    <a href="#apiDocs">Open API Docs</a>
+  </p>
+  
+  <div id="apiDocs">
+    <h2>Fake API Documentation</h2>
+    <p><strong>Endpoint:</strong> <code>GET /v1/fake</code></p>
+    <p>
+      This endpoint returns fake data for demonstration purposes.  
+      You can pass query parameters to filter or modify the response.
+    </p>
+    <p><strong>Example Request:</strong></p>
+    <pre><code>GET https://api.example.com/v1/fake?status=active&amp;limit=10</code></pre>
+    <p><strong>Example Response:</strong></p>
+    <pre><code>{
+  "data": [
+    { "id": 1, "status": "active", "info": "Lorem ipsum" },
+    { "id": 2, "status": "active", "info": "Dolor sit amet" }
+  ],
+  "count": 2
+}</code></pre>
+    <p>
+      <a href="#">Close API Docs</a>
+    </p>
+  </div>
+</body>
+</html>
