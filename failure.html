@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Obfuscated Docs Demo - Clean UI</title>
+
   <!-- Include Bootstrap 5 (CDN) -->
   <link 
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
   >
+
   <style>
     body {
       margin: 1rem;
@@ -52,13 +54,26 @@
       Most bots and scrapers won’t bother decoding it, so the actual content remains hidden.
     </p>
     
-    <!-- The Trigger Button -->
-    <button class="btn btn-primary docs-btn" 
-            data-bs-toggle="offcanvas" 
-            data-bs-target="#offcanvasDocs"
-            aria-controls="offcanvasDocs">
-      Open Documentation
-    </button>
+    <!-- The Trigger Link -->
+    <a href="#"
+       class=""
+       breadcrumb="User Session#Logging in/out#Log in to your account"
+       id="log-in-to-your-account"
+       entry_uid="blt9cf21e8742514cb5"
+       anchorid="log-in-to-your-account"
+
+       data-bs-toggle="offcanvas"
+       data-bs-target="#offcanvasDocs"
+       aria-controls="offcanvasDocs"
+    >
+      <!-- Updated text here -->
+      <div class="fw-normal try-out-action d-inline-block link-default">
+        See docs
+      </div>
+      <div class="fw-normal try-out-action d-inline-block link-default">
+        See docs
+      </div>
+    </a>
   </div>
 
   <!-- Offcanvas Container -->
@@ -83,7 +98,7 @@
 
   <!-- Base64-encoded docs (hidden from immediate view) -->
   <script>
-
+    // Example Base64-encoded string to demonstrate hidden docs
     const encodedDocs = "SGVyZSBpcyBhbiBleGFtcGxlIG9mIHRoZSBWMS9kb2NtYXBkZXYgZW5kcG9pbnQ6CkdFVCAvdjEvZG9jbWFwZGV2P3N0YXR1cz1hY3RpdmUmbGltaXQ9MTAKCkV4YW1wbGUgcmVzcG9uc2U6CnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogMSwgInN0YXR1cyI6ICJhY3RpdmUiLCAiaW5mbyI6ICJkb2MiCiAgICB9LAogICAgewogICAgICAiaWQiOiAyLCAic3RhdHVzIjogImFjdGl2ZSIsICJpbmZvIjogIm1hcCJ9CiAgICBdLAogICJjb3VudCI6IDIKfQo=";
 
     function revealDocs() {
