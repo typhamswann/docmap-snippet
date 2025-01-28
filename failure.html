@@ -2,77 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Docs with Expanding “Popout” Section</title>
+  <title>Obfuscated Docs Demo - Clean UI</title>
+  <!-- Include Bootstrap 5 (CDN) -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
   <style>
     body {
+      margin: 1rem;
       font-family: sans-serif;
-      margin: 2rem;
+      background-color: #f8f9fa;
     }
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-    a {
-      color: #2a6496;
-      text-decoration: none;
-      border-bottom: 1px dashed #2a6496;
-    }
-    a:hover {
-      color: #0b5c9b;
-    }
-    /* Hidden by default */
-    #apiDocs {
-      display: none;
-      border: 1px solid #ccc;
-      padding: 1rem;
-      background: #f9f9f9;
-      margin-top: 1rem;
-    }
-    /* Show when targeted by hash */
-    :target {
-      display: block !important;
-    }
-    code {
-      background: #eee;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-    }
-    pre {
-      background: #f4f4f4;
-      border: 1px solid #ddd;
-      padding: 0.8rem;
+    .docs-btn {
+      cursor: pointer;
+      color: #fff;
+      border: none;
       margin: 1rem 0;
-      overflow-x: auto;
+    }
+    .docs-btn:hover {
+      opacity: 0.9;
+    }
+    /* Offcanvas style tweaks */
+    .offcanvas {
+      background-color: #ffffff; 
+      border-left: 1px solid #e0e0e0;
+    }
+    .offcanvas-header {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    /* Decoded text display */
+    #decodedContent {
+      white-space: pre-wrap; /* Preserve line breaks if present */
+    }
+    /* Subtle heading style */
+    .title-highlight {
+      color: #0d6efd;
     }
   </style>
 </head>
 <body>
-  <h1>My Simple Documentation Page</h1>
   
-  
-  <p>
-    <a href="#apiDocs">Open API Docs</a>
-  </p>
-  
-  <div id="apiDocs">
-    <h2>DocMap API Documentation</h2>
-    <p><strong>Endpoint:</strong> <code>GET /v1/docmapdev</code></p>
-    <p>
-      This endpoint returns fake data for demonstration purposes.  
-      You can pass query parameters to filter or modify the response.
+  <div class="container my-4">
+    <h1 class="mb-3">
+      <span class="title-highlight">Obfuscated</span> Documentation Page
+    </h1>
+    <p class="text-muted">
+      This page demonstrates how to hide your documentation in a Base64-encoded string.  
+      Most bots and scrapers won’t bother decoding it, so the actual content remains hidden.
     </p>
-    <p><strong>Example Request:</strong></p>
-    <pre><code>GET https://api.example.com/v1/docmapdev?status=active&amp;limit=10</code></pre>
-    <p><strong>Example Response:</strong></p>
-    <pre><code>{
-  "data": [
-    { "id": 1, "status": "active", "info": "doc" },
-    { "id": 2, "status": "active", "info": "map" }
-  ],
-  "count": 2
-}</code></pre>
-    <p>
-      <a href="#">Close API Docs</a>
-    </p>
+    
+    <!-- The Trigger Button -->
+    <button class="btn btn-primary docs-btn" 
+            data-bs-toggle="offcanvas" 
+            data-bs-target="#offcanvasDocs"
+            aria-controls="offcanvasDocs">
+      Open Documentation
+    </button>
   </div>
+
+  <!-- Offcanvas Container -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDocs" aria-labelledby="offcanvasDocsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasDocsLabel" class="mb-0">Developer Docs</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        The documentation is hidden by default. Click the button below to decode the content.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs()">
+        Reveal Docs
+      </button>
+      
+      <!-- Decoded content appears here -->
+      <div id="decodedContent" class="mt-4" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- Base64-encoded docs (hidden from immediate view) -->
+  <script>
+
+    const encodedDocs = "SGVyZSBpcyBhbiBleGFtcGxlIG9mIHRoZSBWMS9kb2NtYXBkZXYgZW5kcG9pbnQ6CkdFVCAvdjEvZG9jbWFwZGV2P3N0YXR1cz1hY3RpdmUmbGltaXQ9MTAKCkV4YW1wbGUgcmVzcG9uc2U6CnsKICAiZGF0YSI6IFsKICAgIHsKICAgICAgImlkIjogMSwgInN0YXR1cyI6ICJhY3RpdmUiLCAiaW5mbyI6ICJkb2MiCiAgICB9LAogICAgewogICAgICAiaWQiOiAyLCAic3RhdHVzIjogImFjdGl2ZSIsICJpbmZvIjogIm1hcCJ9CiAgICBdLAogICJjb3VudCI6IDIKfQo=";
+
+    function revealDocs() {
+      // Decode the Base64 string
+      const decodedText = atob(encodedDocs);
+      
+      // Get the container and insert the decoded text
+      const container = document.getElementById('decodedContent');
+      container.textContent = decodedText;
+      container.style.display = 'block';
+    }
+  </script>
+
+  <!-- Bootstrap JavaScript bundle (CDN) -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
 </body>
 </html>
