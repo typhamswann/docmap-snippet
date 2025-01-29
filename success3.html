@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Full Documentation (Extended Demo)</title>
+
+  <!-- Include Bootstrap 5 (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f8f9fa;
+    }
+    .header {
+      background-color: #0d6efd;
+      color: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .docs-container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    /* Sidebar (Table of Contents) */
+    .sidebar {
+      width: 240px;
+      min-height: calc(100vh - 3rem);
+      background-color: #fff;
+      border-right: 1px solid #e0e0e0;
+      padding: 1rem;
+    }
+    .sidebar h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar li {
+      margin-bottom: 0.5rem;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 500;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+    /* Main content area */
+    .main-content {
+      flex: 1;
+      padding: 1rem;
+    }
+    /* Offcanvas styling */
+    .offcanvas-header {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .decodedContent {
+      display: none;
+      white-space: pre-wrap; /* Preserve line breaks */
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <h1 class="mb-0">Full Documentation (Extended Demo)</h1>
+  </div>
+
+  <!-- Main container with sidebar + placeholder content area -->
+  <div class="docs-container">
+    <!-- Sidebar with Table of Contents -->
+    <div class="sidebar">
+      <h2>Documentation</h2>
+      <ul>
+        <!-- Original sections -->
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasAuth"
+             aria-controls="offcanvasAuth">
+            Authentication
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasEndpoints"
+             aria-controls="offcanvasEndpoints">
+            Endpoints
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasExamples"
+             aria-controls="offcanvasExamples">
+            Usage Examples
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasErrors"
+             aria-controls="offcanvasErrors">
+            Error Handling
+          </a>
+        </li>
+        <!-- Additional sections -->
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasFiltering"
+             aria-controls="offcanvasFiltering">
+            Filtering & Querying
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasBulk"
+             aria-controls="offcanvasBulk">
+            Bulk Operations
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasWebhooks"
+             aria-controls="offcanvasWebhooks">
+            Webhooks
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasRateLimits"
+             aria-controls="offcanvasRateLimits">
+            Rate Limits
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasWebsockets"
+             aria-controls="offcanvasWebsockets">
+            Websockets
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasSDKs"
+             aria-controls="offcanvasSDKs">
+            SDKs & Libraries
+          </a>
+        </li>
+        <li>
+          <a href="#"
+             data-bs-toggle="offcanvas"
+             data-bs-target="#offcanvasPermissions"
+             aria-controls="offcanvasPermissions">
+            Permissions
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main content area (blank for demo) -->
+    <div class="main-content">
+      <p class="text-muted">
+        Choose a topic from the sidebar to open detailed docs.
+      </p>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #1: Authentication Docs        -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAuth" aria-labelledby="offcanvasAuthLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasAuthLabel" class="mb-0">Authentication</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Covers user login, token generation, and session management.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('auth')">
+        Reveal Docs
+      </button>
+      <div id="decoded-auth" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #2: Endpoints Docs             -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEndpoints" aria-labelledby="offcanvasEndpointsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasEndpointsLabel" class="mb-0">Endpoints</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        A list of main REST endpoints covering various resources.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('endpoints')">
+        Reveal Docs
+      </button>
+      <div id="decoded-endpoints" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #3: Usage Examples Docs        -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExamples" aria-labelledby="offcanvasExamplesLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasExamplesLabel" class="mb-0">Usage Examples</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Shows realistic request/response patterns.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('examples')">
+        Reveal Docs
+      </button>
+      <div id="decoded-examples" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #4: Error Handling Docs        -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasErrors" aria-labelledby="offcanvasErrorsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasErrorsLabel" class="mb-0">Error Handling</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        How to interpret various error codes.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('errors')">
+        Reveal Docs
+      </button>
+      <div id="decoded-errors" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #5: Filtering & Querying       -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasFiltering" aria-labelledby="offcanvasFilteringLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasFilteringLabel" class="mb-0">Filtering & Querying</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Techniques for advanced filtering of data.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('filtering')">
+        Reveal Docs
+      </button>
+      <div id="decoded-filtering" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #6: Bulk Operations            -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasBulk" aria-labelledby="offcanvasBulkLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasBulkLabel" class="mb-0">Bulk Operations</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Endpoints supporting batch creates, updates, and deletes.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('bulk')">
+        Reveal Docs
+      </button>
+      <div id="decoded-bulk" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #7: Webhooks                   -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasWebhooks" aria-labelledby="offcanvasWebhooksLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasWebhooksLabel" class="mb-0">Webhooks</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        How to configure and handle webhooks.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('webhooks')">
+        Reveal Docs
+      </button>
+      <div id="decoded-webhooks" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #8: Rate Limits                -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRateLimits" aria-labelledby="offcanvasRateLimitsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRateLimitsLabel" class="mb-0">Rate Limits</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Information about our API rate limiting policies.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('ratelimits')">
+        Reveal Docs
+      </button>
+      <div id="decoded-ratelimits" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #9: Websockets                 -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasWebsockets" aria-labelledby="offcanvasWebsocketsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasWebsocketsLabel" class="mb-0">Websockets</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Real-time communication channels.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('websockets')">
+        Reveal Docs
+      </button>
+      <div id="decoded-websockets" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #10: SDKs & Libraries          -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasSDKs" aria-labelledby="offcanvasSDKsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasSDKsLabel" class="mb-0">SDKs & Libraries</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Official and community-maintained SDKs.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('sdks')">
+        Reveal Docs
+      </button>
+      <div id="decoded-sdks" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Offcanvas #11: Permissions               -->
+  <!-- ========================================= -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasPermissions" aria-labelledby="offcanvasPermissionsLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasPermissionsLabel" class="mb-0">Permissions</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p class="text-muted">
+        Role-based access control and permission scopes.
+      </p>
+      <button class="btn btn-sm btn-success" onclick="revealDocs('permissions')">
+        Reveal Docs
+      </button>
+      <div id="decoded-permissions" class="decodedContent"></div>
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- JavaScript for hidden docs and decoding  -->
+  <!-- ========================================= -->
+  <script>
+    /**
+     * Store each doc section in ASCII and encode with btoa.
+     * This avoids issues with special characters.
+     */
+    const docsMap = {
+      auth: btoa(
+`# Authentication
+Our authentication system uses OAuth 2.0 and JSON Web Tokens (JWT).
+
+1. POST /api/auth/login
+   - Request body: { "username": "string", "password": "string" }
+   - Response:     { "token": "<jwt-token>", "expires": 3600 }
+
+2. POST /api/auth/logout
+   - Invalidates the current token.
+
+Include your token in the Authorization header on protected routes:
+   Authorization: Bearer <jwt-token>
+`
+      ),
+
+      endpoints: btoa(
+`# Endpoints
+
+Below are the main REST endpoints grouped by resource. All endpoints require an Authorization header if they access protected data.
+
+## User Management
+1. GET /api/users
+   - Returns a list of users.
+   - Query params: page, limit, sort, filters
+2. POST /api/users
+   - Creates a new user.
+   - Request body: { "username": "string", "email": "string", "password": "string" }
+3. GET /api/users/:id
+   - Retrieves details of a user by ID.
+4. PUT /api/users/:id
+   - Updates the user's info.
+5. DELETE /api/users/:id
+   - Deletes the specified user.
+
+## Product Management
+1. GET /api/products
+   - Returns a list of products.
+   - Query params: category, page, limit
+2. POST /api/products
+   - Creates a new product.
+   - Request body: { "name": "string", "price": number, "category": "string" }
+3. GET /api/products/:id
+   - Retrieves details of a product by ID.
+4. PUT /api/products/:id
+   - Updates the product's info.
+5. DELETE /api/products/:id
+   - Deletes the specified product.
+
+## Orders
+1. GET /api/orders
+   - Returns a list of orders.
+   - Query params: status, page, limit
+2. POST /api/orders
+   - Creates a new order.
+   - Request body: { "userId": "string", "items": [ { "productId": "string", "qty": number } ] }
+3. GET /api/orders/:id
+   - Retrieves details of an order by ID.
+4. PUT /api/orders/:id
+   - Updates order status.
+5. DELETE /api/orders/:id
+   - Cancels the specified order (if not shipped).
+
+## Invoices
+1. GET /api/invoices
+   - Returns a list of invoices.
+2. GET /api/invoices/:id
+   - Retrieves a specific invoice by ID.
+3. POST /api/invoices
+   - Generates a new invoice for an order.
+
+## Notifications
+1. GET /api/notifications
+   - Retrieves all notifications for the authenticated user.
+2. POST /api/notifications/mark-read
+   - Marks specific notifications as read.
+
+## Messages
+1. GET /api/messages
+   - Returns a list of messages for the authenticated user.
+2. POST /api/messages
+   - Sends a message from one user to another.
+`
+      ),
+
+      examples: btoa(
+`# Usage Examples
+
+1) Creating a New User
+POST /api/users
+{
+  "username": "janedoe",
+  "email": "jane@example.com",
+  "password": "secret123"
+}
+
+2) Logging In
+POST /api/auth/login
+{
+  "username": "janedoe",
+  "password": "secret123"
+}
+
+3) Fetching Protected Resource (Users)
+GET /api/users?page=1&limit=10
+Headers:
+  Authorization: Bearer <jwt-token>
+
+Response:
+  {
+    "data": [
+       { "id": "abc123", "username": "janedoe", "email": "jane@example.com" },
+       ...
+    ],
+    "page": 1,
+    "limit": 10
+  }
+
+4) Creating an Order
+POST /api/orders
+{
+  "userId": "abc123",
+  "items": [
+    { "productId": "prod001", "qty": 2 },
+    { "productId": "prod002", "qty": 1 }
+  ]
+}
+
+5) Logging Out
+POST /api/auth/logout
+`
+      ),
+
+      errors: btoa(
+`# Error Handling
+The API returns standard HTTP status codes:
+
+400 Bad Request   - Invalid parameters
+401 Unauthorized  - Missing or expired token
+403 Forbidden     - No permission to access resource
+404 Not Found     - Resource does not exist
+409 Conflict      - Resource already exists or version conflict
+500 Server Error  - Server encountered an unknown error
+
+Example error response:
+{
+  "error": "Invalid credentials",
+  "code": 401
+}
+`
+      ),
+
+      filtering: btoa(
+`# Filtering & Querying
+Many endpoints accept query parameters for filtering results. Examples:
+
+GET /api/users?status=active&role=admin
+GET /api/products?category=electronics&price_lt=1000
+GET /api/orders?status=pending&date_gte=2023-01-01
+
+Operators:
+- eq, lt, gt, lte, gte, in, contains
+You can combine filters with & for advanced searching.
+`
+      ),
+
+      bulk: btoa(
+`# Bulk Operations
+Our API supports batch operations to reduce request overhead.
+
+1. POST /api/users/bulk-create
+   - Body: [ { "username": "user1", "email": "u1@example.com" }, ... ]
+   - Creates multiple users at once.
+
+2. PUT /api/users/bulk-update
+   - Body: [ { "id": "abc123", "email": "new@example.com" }, ... ]
+   - Updates multiple users.
+
+3. DELETE /api/users/bulk-delete
+   - Body: [ "abc123", "def456", "ghi789" ]
+   - Deletes multiple users by ID.
+
+Each operation returns a summary of successes and failures.
+`
+      ),
+
+      webhooks: btoa(
+`# Webhooks
+Webhooks allow external services to be notified of certain events in real-time.
+
+1. GET /api/webhooks
+   - Returns a list of configured webhooks.
+2. POST /api/webhooks
+   - Creates a new webhook subscription.
+   - Body: { "url": "https://example.com/webhook", "events": ["orderCreated","userRegistered"] }
+3. DELETE /api/webhooks/:id
+   - Removes an existing webhook subscription.
+
+Events:
+- userRegistered
+- userDeleted
+- orderCreated
+- orderUpdated
+- productCreated
+- productUpdated
+`
+      ),
+
+      ratelimits: btoa(
+`# Rate Limits
+To maintain fair usage, the API enforces rate limiting per IP or token.
+
+Limits:
+- 100 requests per minute per token
+- 1000 requests per day per token
+
+Response Headers:
+- X-RateLimit-Limit: Maximum requests allowed in current period
+- X-RateLimit-Remaining: Remaining requests in current period
+- X-RateLimit-Reset: Time (in UTC epoch) when the rate limit resets
+
+Clients exceeding these limits will receive a 429 Too Many Requests error.
+`
+      ),
+
+      websockets: btoa(
+`# Websockets
+For real-time updates, connect to our WebSocket endpoint:
+wss://api.example.com/realtime
+
+Events:
+- message (sent whenever new messages arrive)
+- notification (system or user notifications)
+- orderUpdate (status change in orders)
+
+Authentication:
+You must include a valid token in the connection string:
+wss://api.example.com/realtime?token=<jwt-token>
+`
+      ),
+
+      sdks: btoa(
+`# SDKs & Libraries
+We offer official and community-maintained SDKs in various languages.
+
+Official SDKs:
+- JavaScript/TypeScript: https://github.com/example/js-sdk
+- Python: https://github.com/example/py-sdk
+- Java: https://github.com/example/java-sdk
+
+Community SDKs:
+- PHP: https://github.com/community/php-sdk
+- Ruby: https://github.com/community/ruby-sdk
+
+Installation:
+- npm install example-sdk
+- pip install example-sdk
+`
+      ),
+
+      permissions: btoa(
+`# Permissions
+We use role-based access control (RBAC) to assign permissions.
+
+Roles:
+- admin: Full access to all endpoints
+- manager: Can manage users and products, cannot delete system logs
+- user: Basic access to personal data, can view own orders
+- guest: Very limited access (read-only public endpoints)
+
+Permission Scopes:
+- user:read, user:create, user:update, user:delete
+- product:read, product:create, product:update, product:delete
+- order:read, order:create, order:update, order:delete
+
+Admins can assign or remove roles. Check your token's claims to see permissible actions.
+`
+      )
+    };
+
+    /**
+     * Reveal Docs in the specified section (auth, endpoints, examples, errors, etc.).
+     * This function is called by each "Reveal Docs" button.
+     */
+    function revealDocs(type) {
+      // Build the ID of the container (decoded-auth, decoded-endpoints, etc.)
+      const containerId = `decoded-${type}`;
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      // Decode and display the text
+      const decodedText = atob(docsMap[type]);
+      container.textContent = decodedText;
+      container.style.display = "block";
+    }
+  </script>
+
+  <!-- This invisible snippet includes ALL docs in plain text for parsers -->
+  <div id="all-docs" style="display:none;">
+    <!-- Authentication -->
+    # Authentication
+    Our authentication system uses OAuth 2.0 and JSON Web Tokens (JWT).
+
+    1. POST /api/auth/login
+       - Request body: { "username": "string", "password": "string" }
+       - Response:     { "token": "<jwt-token>", "expires": 3600 }
+
+    2. POST /api/auth/logout
+       - Invalidates the current token.
+
+    Include your token in the Authorization header on protected routes:
+       Authorization: Bearer <jwt-token>
+
+    <!-- Endpoints -->
+    # Endpoints
+
+    Below are the main REST endpoints grouped by resource. All endpoints require an Authorization header if they access protected data.
+
+    ## User Management
+    1. GET /api/users
+       - Returns a list of users.
+       - Query params: page, limit, sort, filters
+    2. POST /api/users
+       - Creates a new user.
+       - Request body: { "username": "string", "email": "string", "password": "string" }
+    3. GET /api/users/:id
+       - Retrieves details of a user by ID.
+    4. PUT /api/users/:id
+       - Updates the user's info.
+    5. DELETE /api/users/:id
+       - Deletes the specified user.
+
+    ## Product Management
+    1. GET /api/products
+       - Returns a list of products.
+       - Query params: category, page, limit
+    2. POST /api/products
+       - Creates a new product.
+       - Request body: { "name": "string", "price": number, "category": "string" }
+    3. GET /api/products/:id
+       - Retrieves details of a product by ID.
+    4. PUT /api/products/:id
+       - Updates the product's info.
+    5. DELETE /api/products/:id
+       - Deletes the specified product.
+
+    ## Orders
+    1. GET /api/orders
+       - Returns a list of orders.
+       - Query params: status, page, limit
+    2. POST /api/orders
+       - Creates a new order.
+       - Request body: { "userId": "string", "items": [ { "productId": "string", "qty": number } ] }
+    3. GET /api/orders/:id
+       - Retrieves details of an order by ID.
+    4. PUT /api/orders/:id
+       - Updates order status.
+    5. DELETE /api/orders/:id
+       - Cancels the specified order (if not shipped).
+
+    ## Invoices
+    1. GET /api/invoices
+       - Returns a list of invoices.
+    2. GET /api/invoices/:id
+       - Retrieves a specific invoice by ID.
+    3. POST /api/invoices
+       - Generates a new invoice for an order.
+
+    ## Notifications
+    1. GET /api/notifications
+       - Retrieves all notifications for the authenticated user.
+    2. POST /api/notifications/mark-read
+       - Marks specific notifications as read.
+
+    ## Messages
+    1. GET /api/messages
+       - Returns a list of messages for the authenticated user.
+    2. POST /api/messages
+       - Sends a message from one user to another.
+
+    <!-- Usage Examples -->
+    # Usage Examples
+
+    1) Creating a New User
+    POST /api/users
+    {
+      "username": "janedoe",
+      "email": "jane@example.com",
+      "password": "secret123"
+    }
+
+    2) Logging In
+    POST /api/auth/login
+    {
+      "username": "janedoe",
+      "password": "secret123"
+    }
+
+    3) Fetching Protected Resource (Users)
+    GET /api/users?page=1&limit=10
+    Headers:
+      Authorization: Bearer <jwt-token>
+
+    Response:
+      {
+        "data": [
+           { "id": "abc123", "username": "janedoe", "email": "jane@example.com" },
+           ...
+        ],
+        "page": 1,
+        "limit": 10
+      }
+
+    4) Creating an Order
+    POST /api/orders
+    {
+      "userId": "abc123",
+      "items": [
+        { "productId": "prod001", "qty": 2 },
+        { "productId": "prod002", "qty": 1 }
+      ]
+    }
+
+    5) Logging Out
+    POST /api/auth/logout
+
+    <!-- Error Handling -->
+    # Error Handling
+    The API returns standard HTTP status codes:
+
+    400 Bad Request   - Invalid parameters
+    401 Unauthorized  - Missing or expired token
+    403 Forbidden     - No permission to access resource
+    404 Not Found     - Resource does not exist
+    409 Conflict      - Resource already exists or version conflict
+    500 Server Error  - Server encountered an unknown error
+
+    Example error response:
+    {
+      "error": "Invalid credentials",
+      "code": 401
+    }
+
+    <!-- Filtering & Querying -->
+    # Filtering & Querying
+    Many endpoints accept query parameters for filtering results. Examples:
+
+    GET /api/users?status=active&role=admin
+    GET /api/products?category=electronics&price_lt=1000
+    GET /api/orders?status=pending&date_gte=2023-01-01
+
+    Operators:
+    - eq, lt, gt, lte, gte, in, contains
+    You can combine filters with & for advanced searching.
+
+    <!-- Bulk Operations -->
+    # Bulk Operations
+    Our API supports batch operations to reduce request overhead.
+
+    1. POST /api/users/bulk-create
+       - Body: [ { "username": "user1", "email": "u1@example.com" }, ... ]
+       - Creates multiple users at once.
+
+    2. PUT /api/users/bulk-update
+       - Body: [ { "id": "abc123", "email": "new@example.com" }, ... ]
+       - Updates multiple users.
+
+    3. DELETE /api/users/bulk-delete
+       - Body: [ "abc123", "def456", "ghi789" ]
+       - Deletes multiple users by ID.
+
+    Each operation returns a summary of successes and failures.
+
+    <!-- Webhooks -->
+    # Webhooks
+    Webhooks allow external services to be notified of certain events in real-time.
+
+    1. GET /api/webhooks
+       - Returns a list of configured webhooks.
+    2. POST /api/webhooks
+       - Creates a new webhook subscription.
+       - Body: { "url": "https://example.com/webhook", "events": ["orderCreated","userRegistered"] }
+    3. DELETE /api/webhooks/:id
+       - Removes an existing webhook subscription.
+
+    Events:
+    - userRegistered
+    - userDeleted
+    - orderCreated
+    - orderUpdated
+    - productCreated
+    - productUpdated
+
+    <!-- Rate Limits -->
+    # Rate Limits
+    To maintain fair usage, the API enforces rate limiting per IP or token.
+
+    Limits:
+    - 100 requests per minute per token
+    - 1000 requests per day per token
+
+    Response Headers:
+    - X-RateLimit-Limit: Maximum requests allowed in current period
+    - X-RateLimit-Remaining: Remaining requests in current period
+    - X-RateLimit-Reset: Time (in UTC epoch) when the rate limit resets
+
+    Clients exceeding these limits will receive a 429 Too Many Requests error.
+
+    <!-- Websockets -->
+    # Websockets
+    For real-time updates, connect to our WebSocket endpoint:
+    wss://api.example.com/realtime
+
+    Events:
+    - message (sent whenever new messages arrive)
+    - notification (system or user notifications)
+    - orderUpdate (status change in orders)
+
+    Authentication:
+    You must include a valid token in the connection string:
+    wss://api.example.com/realtime?token=<jwt-token>
+
+    <!-- SDKs & Libraries -->
+    # SDKs & Libraries
+    We offer official and community-maintained SDKs in various languages.
+
+    Official SDKs:
+    - JavaScript/TypeScript: https://github.com/example/js-sdk
+    - Python: https://github.com/example/py-sdk
+    - Java: https://github.com/example/java-sdk
+
+    Community SDKs:
+    - PHP: https://github.com/community/php-sdk
+    - Ruby: https://github.com/community/ruby-sdk
+
+    Installation:
+    - npm install example-sdk
+    - pip install example-sdk
+
+    <!-- Permissions -->
+    # Permissions
+    We use role-based access control (RBAC) to assign permissions.
+
+    Roles:
+    - admin: Full access to all endpoints
+    - manager: Can manage users and products, cannot delete system logs
+    - user: Basic access to personal data, can view own orders
+    - guest: Very limited access (read-only public endpoints)
+
+    Permission Scopes:
+    - user:read, user:create, user:update, user:delete
+    - product:read, product:create, product:update, product:delete
+    - order:read, order:create, order:update, order:delete
+
+    Admins can assign or remove roles. Check your token's claims to see permissible actions.
+
+  </div>
+  <!-- End of invisible snippet -->
+
+  <!-- Bootstrap JavaScript bundle (CDN) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+</body>
+</html>
