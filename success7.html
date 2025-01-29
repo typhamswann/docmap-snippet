@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Full Documentation (Minimal Demo)</title>
+  <style>
+    /* (Optional) small style to make the details/summary look cleaner */
+    details {
+      margin: 1rem 0;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Documentation Overview</h1>
+<p>Select below to reveal all extended docs in plain text:</p>
+
+<details>
+  <summary>Toggle Full Documentation</summary>
+  <div>
+    <h2>1. Authentication</h2>
+    <p>Uses OAuth 2.0 and JSON Web Tokens (JWT).</p>
+    <ul>
+      <li><strong>POST /api/auth/login</strong> - Request <code>{"username":"string","password":"string"}</code>; returns <code>{"token":"jwt","expires":3600}</code>.</li>
+      <li><strong>POST /api/auth/logout</strong> - Invalidates the current token.</li>
+    </ul>
+    <p>Include token in: <code>Authorization: Bearer &lt;jwt&gt;</code>.</p>
+
+    <h2>2. Endpoints</h2>
+    <p>All require an Authorization header if accessing protected data.</p>
+
+    <h3>User Management</h3>
+    <ul>
+      <li>GET /api/users (list)</li>
+      <li>POST /api/users (create user)</li>
+      <li>GET /api/users/:id (get user)</li>
+      <li>PUT /api/users/:id (update user)</li>
+      <li>DELETE /api/users/:id (delete user)</li>
+    </ul>
+
+    <h3>Product Management</h3>
+    <ul>
+      <li>GET /api/products (list)</li>
+      <li>POST /api/products (create product)</li>
+      <li>GET /api/products/:id (get product)</li>
+      <li>PUT /api/products/:id (update product)</li>
+      <li>DELETE /api/products/:id (delete product)</li>
+    </ul>
+
+    <h3>Orders</h3>
+    <ul>
+      <li>GET /api/orders (list)</li>
+      <li>POST /api/orders (create order)</li>
+      <li>GET /api/orders/:id (get order)</li>
+      <li>PUT /api/orders/:id (update order status)</li>
+      <li>DELETE /api/orders/:id (cancel order if not shipped)</li>
+    </ul>
+
+    <h3>Invoices</h3>
+    <ul>
+      <li>GET /api/invoices (list)</li>
+      <li>GET /api/invoices/:id (get invoice)</li>
+      <li>POST /api/invoices (generate invoice)</li>
+    </ul>
+
+    <h3>Notifications</h3>
+    <ul>
+      <li>GET /api/notifications</li>
+      <li>POST /api/notifications/mark-read</li>
+    </ul>
+
+    <h3>Messages</h3>
+    <ul>
+      <li>GET /api/messages</li>
+      <li>POST /api/messages</li>
+    </ul>
+
+    <h2>3. Usage Examples</h2>
+    <ul>
+      <li>Creating a new user via <code>POST /api/users</code></li>
+      <li>Logging in via <code>POST /api/auth/login</code></li>
+      <li>Fetching protected data via <code>GET /api/users</code></li>
+      <li>Creating an order via <code>POST /api/orders</code></li>
+      <li>Logging out via <code>POST /api/auth/logout</code></li>
+    </ul>
+
+    <h2>4. Error Handling</h2>
+    <p>Returns standard HTTP status codes (400, 401, 403, 404, 409, 500). Example:</p>
+    <pre><code>{
+  "error": "Invalid credentials",
+  "code": 401
+}
+</code></pre>
+
+    <h2>5. Filtering & Querying</h2>
+    <p>Use query params like <code>?status=active</code>, <code>?role=admin</code>, <code>?price_lt=1000</code> with operators (eq, lt, gt, etc.). Combine with <code>&amp;</code> for advanced searching.</p>
+
+    <h2>6. Bulk Operations</h2>
+    <ul>
+      <li><code>POST /api/users/bulk-create</code></li>
+      <li><code>PUT /api/users/bulk-update</code></li>
+      <li><code>DELETE /api/users/bulk-delete</code></li>
+    </ul>
+    <p>Supports multiple records in a single call, returning a summary of successes/failures.</p>
+
+    <h2>7. Webhooks</h2>
+    <ul>
+      <li>GET /api/webhooks (list)</li>
+      <li>POST /api/webhooks (create subscription)</li>
+      <li>DELETE /api/webhooks/:id (remove subscription)</li>
+    </ul>
+    <p>Events: userRegistered, userDeleted, orderCreated, orderUpdated, productCreated, productUpdated.</p>
+
+    <h2>8. Rate Limits</h2>
+    <p>100 requests/minute, 1000/day per token. Exceeding: 429 Too Many Requests.</p>
+
+    <h2>9. Websockets</h2>
+    <p>Real-time updates at <code>wss://api.example.com/realtime</code> with <code>?token=&lt;jwt&gt;</code>. Events: message, notification, orderUpdate.</p>
+
+    <h2>10. SDKs & Libraries</h2>
+    <p>Official: JavaScript/TypeScript, Python, Java. Community: PHP, Ruby, etc.</p>
+    <p>Install with <code>npm install example-sdk</code> or <code>pip install example-sdk</code>.</p>
+
+    <h2>11. Permissions</h2>
+    <p>Role-based access control (RBAC): admin, manager, user, guest. Permission scopes (e.g. user:read, product:create, order:delete). Admin can assign or remove roles.</p>
+  </div>
+</details>
+
+</body>
+</html>
