@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DocMap - JSON Converter</title>
+  
+  <!-- Favicon (Optional) -->
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="https://docmap.dev/ico.png"
+  />
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo / Branding -->
+        <div class="flex items-center space-x-3">
+          <a href="https://docmap.dev">
+            <img
+              src="https://docmap.dev/logo_dark.png"
+              alt="DocMap Logo"
+              class="h-8"
+            />
+          </a>
+          <a href="https://docmap.dev" class="text-xl font-semibold text-gray-900">DocMap</a>
+        </div>
+        <!-- Right nav links -->
+        <div class="hidden md:flex items-center space-x-4">
+          <a
+            href="https://docmap.dev"
+            class="text-gray-700 hover:text-gray-900"
+          >
+            Home
+          </a>
+          <a
+            href="https://calendly.com/ty-phamswann-docmap/30min"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
+          >
+            Book Call
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Wrapper -->
+  <main class="flex-1 w-full">
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      <!-- Page Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          JSON to Special JSON Schema Converter
+        </h1>
+        <p class="mt-2 text-base text-gray-600">
+          Paste your JSON on the left, specify a Schema Name, and click "Convert".
+        </p>
+      </div>
+
+      <!-- Converter in Horizontal Layout -->
+      <div class="bg-white shadow sm:rounded-lg p-6 md:flex md:space-x-6">
+        <!-- Left Column (Input) -->
+        <div class="md:w-1/2 w-full mb-6 md:mb-0">
+          <label for="inputJson" class="block text-sm font-medium text-gray-700 mb-2">
+            Input JSON
+          </label>
+          <textarea
+            id="inputJson"
+            class="block w-full border border-gray-300 rounded-md p-2 h-48 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder='Example: { "key": "value", "arr": [1, 2, 3] }'
+          ></textarea>
+
+          <label for="schemaName" class="block text-sm font-medium text-gray-700 mt-4 mb-2">
+            Schema Name
+          </label>
+          <input
+            type="text"
+            id="schemaName"
+            value="MySchema"
+            class="block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <button
+            id="convertButton"
+            class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded shadow"
+          >
+            Convert
+          </button>
+        </div>
+
+        <!-- Right Column (Output) -->
+        <div class="md:w-1/2 w-full">
+          <h2 class="text-sm font-semibold text-gray-800 mb-2">
+            Schema Result:
+          </h2>
+          <div
+            id="result"
+            class="bg-gray-100 border border-gray-200 rounded p-4 text-sm whitespace-pre-wrap h-64 overflow-auto"
+          ></div>
+        </div>
+      </div>
+
+      <!-- API Access Section -->
+      <div class="mt-10 bg-white shadow sm:rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold text-gray-800">
+          Request API Access
+        </h2>
+        <p class="mt-2 text-sm text-gray-600">
+          Interested in using this tool via an API? Please email 
+          <a href="mailto:ty.phamswann@docmap.dev" class="text-blue-600 hover:underline">
+            ty.phamswann@docmap.dev
+          </a>
+          for API access.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200">
+    <div
+      class="max-w-7xl mx-auto py-6 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8"
+    >
+      <div class="flex justify-center space-x-6 md:order-2">
+        <a href="https://docmap.dev" class="text-gray-500 hover:text-gray-600">
+          Home
+        </a>
+      </div>
+      <div class="mt-4 md:mt-0 md:order-1">
+        <p class="text-center text-base text-gray-400">&copy; 2025 DocMap</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    /**
+     * Determines the basic JSON type of a value in a way suitable
+     * for standard JSON Schema usage.
+     */
+    function getJsonType(value) {
+      if (value === null) {
+        // Defaults to "string"
+        return "string";
+      }
+      if (Array.isArray(value)) {
+        return "array";
+      }
+      if (typeof value === "object") {
+        return "object";
+      }
+      if (typeof value === "string") {
+        return "string";
+      }
+      if (typeof value === "number") {
+        return "number";
+      }
+      if (typeof value === "boolean") {
+        return "boolean";
+      }
+      // Fallback type
+      return "string";
+    }
+
+    /**
+     * A naive check for whether two objects have the same "shape":
+     * i.e., same property keys (recursively ignoring array order).
+     */
+    function haveSameShape(objA, objB) {
+      if (!objA || !objB || typeof objA !== "object" || typeof objB !== "object") {
+        return false;
+      }
+      const keysA = Object.keys(objA).sort();
+      const keysB = Object.keys(objB).sort();
+      if (keysA.length !== keysB.length) {
+        return false;
+      }
+      for (let i = 0; i < keysA.length; i++) {
+        if (keysA[i] !== keysB[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    /**
+     * Build a JSON schema (the "schema" portion) from a given value.
+     */
+    function buildSchema(value, rootExample) {
+      const type = getJsonType(value);
+
+      if (type === "array") {
+        const itemsType = value.length > 0 ? getJsonType(value[0]) : "string";
+        if (itemsType === "object") {
+          if (rootExample && haveSameShape(value[0], rootExample)) {
+            return {
+              type: "array",
+              items: { "$ref": "#" }
+            };
+          } else {
+            return {
+              type: "array",
+              items: buildSchema(value[0], rootExample)
+            };
+          }
+        } else if (itemsType === "array") {
+          return {
+            type: "array",
+            items: buildSchema(value[0], rootExample)
+          };
+        } else {
+          return {
+            type: "array",
+            items: { type: itemsType }
+          };
+        }
+      }
+
+      if (type === "object") {
+        const properties = {};
+        const required = [];
+        for (const key of Object.keys(value)) {
+          required.push(key);
+          const propType = getJsonType(value[key]);
+          if (propType === "object" || propType === "array") {
+            if (rootExample && haveSameShape(value[key], rootExample)) {
+              properties[key] = { "$ref": "#" };
+            } else {
+              properties[key] = buildSchema(value[key], rootExample);
+            }
+          } else {
+            properties[key] = { type: propType };
+          }
+        }
+        return {
+          type: "object",
+          properties,
+          required,
+          additionalProperties: false
+        };
+      }
+
+      return { type };
+    }
+
+    /**
+     * Converts a JSON object into the special JSON schema format.
+     */
+    function convertToSpecialJSONSchema(input, schemaName) {
+      const schema = buildSchema(input, input);
+      return {
+        name: schemaName,
+        strict: true,
+        schema
+      };
+    }
+
+    document.getElementById('convertButton').addEventListener('click', () => {
+      const inputText = document.getElementById('inputJson').value.trim();
+      const schemaName = document.getElementById('schemaName').value.trim() || 'MySchema';
+      const resultEl = document.getElementById('result');
+
+      resultEl.textContent = '';
+
+      if (!inputText) {
+        resultEl.textContent = 'Please provide valid JSON input.';
+        return;
+      }
+
+      try {
+        const jsonObj = JSON.parse(inputText);
+        const resultSchema = convertToSpecialJSONSchema(jsonObj, schemaName);
+        resultEl.textContent = JSON.stringify(resultSchema, null, 2);
+      } catch (err) {
+        resultEl.textContent = 'Error parsing JSON: ' + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
