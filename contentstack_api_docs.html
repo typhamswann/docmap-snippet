@@ -102,6 +102,9 @@
 
         <section class="endpoint-section">
             <h2 class="text-2xl font-semibold mb-4 text-gray-700">POST /content</h2>
+
+            <p class="mb-4 text-gray-600">https://cs-api-8yt7.onrender.com/content</p>
+
             <p class="mb-4 text-gray-600">
                 This endpoint retrieves the raw JSON content for a specific URL stored in the database.
                 It queries the `urls` table for an exact match based on the provided URL.
@@ -114,7 +117,7 @@
             <p class="mb-2"><strong>Body:</strong></p>
             <div class="code-block">
                 <pre><code class="language-json">{
-  "url": "string" // The URL of the document to retrieve. Must be URL-encoded if it contains '#'
+  "url": "string"
 }</code></pre>
             </div>
             <p class="mb-4 text-sm text-gray-500">
@@ -149,6 +152,7 @@
 
         <section class="endpoint-section">
             <h2 class="text-2xl font-semibold mb-4 text-gray-700">POST /search</h2>
+            <p class="mb-4 text-gray-600">https://cs-api-8yt7.onrender.com/search</p>
             <p class="mb-4 text-gray-600">
                 This endpoint performs an embedding-based search across the document sections stored in the database.
                 It uses the provided phrase to generate an embedding and finds the most relevant sections.
