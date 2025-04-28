@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contentstack Documentation API</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://docmap.dev/ico.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0; /* Lighter background */
+            color: #2d3748; /* Darker text */
+            line-height: 1.6;
+            padding: 1.5rem; /* Add some padding around the body */
+        }
+        .container {
+            max-width: 1000px; /* Slightly wider container */
+            margin: 0 auto;
+        }
+        .endpoint-section {
+            background-color: #ffffff;
+            border-radius: 16px; /* More rounded corners */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+            padding: 2rem; /* Increased padding */
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0; /* Subtle border */
+        }
+        .code-block {
+            background-color: #f7fafc; /* Lighter code block background */
+            border-left: 4px solid #4299e1; /* Blue border */
+            overflow-x: auto;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+        .playground {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #cbd5e0; /* Dashed separator */
+        }
+        .playground label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .playground input[type="text"],
+        .playground textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+        .playground button {
+            background-color: #4299e1; /* Blue button */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .playground button:hover {
+            background-color: #3182ce; /* Darker blue on hover */
+        }
+        .response-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #f7fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            min-height: 100px;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            word-wrap: break-word; /* Break long words */
+        }
+         .response-area pre {
+             margin: 0; /* Remove default pre margin */
+             white-space: pre-wrap; /* Ensure pre content wraps */
+             word-wrap: break-word; /* Break long words in pre */
+         }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-4xl font-bold text-center mb-10 text-gray-800">Contentstack Documentation API</h1>
+
+        <section class="endpoint-section">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">POST /content</h2>
+            <p class="mb-4 text-gray-600">
+                This endpoint retrieves the raw JSON content for a specific URL stored in the database.
+                It queries the `urls` table for an exact match based on the provided URL.
+            </p>
+
+            <h3 class="text-xl font-medium mb-2 text-gray-700">Request</h3>
+            <p class="mb-2"><strong>Method:</strong> POST</p>
+            <p class="mb-2"><strong>URL:</strong> <code>/content</code></p>
+            <p class="mb-2"><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p class="mb-2"><strong>Body:</strong></p>
+            <div class="code-block">
+                <pre><code class="language-json">{
+  "url": "string" // The URL of the document to retrieve. Must be URL-encoded if it contains '#'
+}</code></pre>
+            </div>
+            <p class="mb-4 text-sm text-gray-500">
+                *Note: The `url` parameter should be a string representing the exact URL stored in your `urls` table. If the URL contains a '#' character, ensure it is URL-encoded (e.g., replace '#' with `%23`).*
+            </p>
+
+            <h3 class="text-xl font-medium mb-2 text-gray-700">Response</h3>
+            <p class="mb-2"><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p class="mb-2"><strong>Success (Status 200):</strong></p>
+            <div class="code-block">
+                <pre><code class="language-json">{
+  "url": "string",      // The requested URL
+  "title": "string",    // The title associated with the URL
+  "raw_json": {}        // The raw JSON content stored for this URL
+}</code></pre>
+            </div>
+            <p class="mb-2"><strong>Error (Status 400):</strong> Missing 'url' in request body</p>
+            <p class="mb-2"><strong>Error (Status 404):</strong> No row found for the specified url</p>
+            <p class="mb-2"><strong>Error (Status 500):</strong> Internal server error</p>
+
+            <div class="playground">
+                <h3 class="text-xl font-medium mb-4 text-gray-700">Try it out!</h3>
+                <label for="content-url">URL:</label>
+                <input type="text" id="content-url" placeholder="e.g., https://www.contentstack.com/docs/developers/apis/content-management-api#request-for-a-password">
+                <button id="fetch-content-btn">Fetch Content</button>
+                <div class="response-area mt-4">
+                    <pre id="content-response">Response will appear here...</pre>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="endpoint-section">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">POST /search</h2>
+            <p class="mb-4 text-gray-600">
+                This endpoint performs an embedding-based search across the document sections stored in the database.
+                It uses the provided phrase to generate an embedding and finds the most relevant sections.
+            </p>
+
+            <h3 class="text-xl font-medium mb-2 text-gray-700">Request</h3>
+            <p class="mb-2"><strong>Method:</strong> POST</p>
+            <p class="mb-2"><strong>URL:</strong> <code>/search</code></p>
+            <p class="mb-2"><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p class="mb-2"><strong>Body:</strong></p>
+            <div class="code-block">
+                <pre><code class="language-json">{
+  "phrase": "string" // The search query phrase
+}</code></pre>
+            </div>
+
+            <h3 class="text-xl font-medium mb-2 text-gray-700">Response</h3>
+            <p class="mb-2"><strong>Content-Type:</strong> <code>application/json</code></p>
+            <p class="mb-2"><strong>Success (Status 200):</strong></p>
+            <div class="code-block">
+                <pre><code class="language-json">{
+  "data": [
+    {
+      "url": "string",  // The URL of the document containing the section
+      "text": "string" // The combined title, section name, and content of the relevant section
+    },
+    // ... up to 5 relevant sections
+  ]
+}</code></pre>
+            </div>
+             <p class="mb-4 text-sm text-gray-500">
+                The response returns an array of up to 5 objects, each representing a relevant section found by the search. The sections are sorted first by similarity score (descending), then by token count (descending) as a tie-breaker.
+            </p>
+            <p class="mb-2"><strong>Error (Status 400):</strong> Missing 'phrase' in request body</p>
+            <p class="mb-2"><strong>Error (Status 500):</strong> Internal error</p>
+
+             <div class="playground">
+                <h3 class="text-xl font-medium mb-4 text-gray-700">Try it out!</h3>
+                <label for="search-phrase">Search Phrase:</label>
+                <input type="text" id="search-phrase" placeholder="e.g., how to use Automate">
+                <button id="run-search-btn">Run Search</button>
+                <div class="response-area mt-4">
+                    <pre id="search-response">Response will appear here...</pre>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://cs-api-8yt7.onrender.com';
+
+        // Content Endpoint Playground Logic
+        document.getElementById('fetch-content-btn').addEventListener('click', async () => {
+            const urlInput = document.getElementById('content-url');
+            const responseArea = document.getElementById('content-response');
+            const url = urlInput.value.trim();
+
+            if (!url) {
+                responseArea.textContent = 'Error: Please enter a URL.';
+                return;
+            }
+
+            responseArea.textContent = 'Fetching...';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/content`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    responseArea.textContent = `Error ${response.status}: ${data.error || 'Unknown error'}`;
+                } else {
+                    responseArea.textContent = JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                responseArea.textContent = `Error: ${error.message}`;
+                console.error('Fetch error:', error);
+            }
+        });
+
+        // Search Endpoint Playground Logic
+        document.getElementById('run-search-btn').addEventListener('click', async () => {
+            const phraseInput = document.getElementById('search-phrase');
+            const responseArea = document.getElementById('search-response');
+            const phrase = phraseInput.value.trim();
+
+            if (!phrase) {
+                responseArea.textContent = 'Error: Please enter a search phrase.';
+                return;
+            }
+
+            responseArea.textContent = 'Searching...';
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ phrase: phrase }),
+                });
+
+                const data = await response.json();
+
+                 if (!response.ok) {
+                    responseArea.textContent = `Error ${response.status}: ${data.error || 'Unknown error'}`;
+                } else {
+                    responseArea.textContent = JSON.stringify(data, null, 2);
+                }
+            } catch (error) {
+                responseArea.textContent = `Error: ${error.message}`;
+                 console.error('Fetch error:', error);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
